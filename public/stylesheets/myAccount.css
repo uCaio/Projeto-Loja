@@ -1,0 +1,67 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+
+.form-container{
+    width: 500px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.label-container{
+    width: 300px;
+    margin: 05px 21px;
+}
+
+.input-container{
+    width: 400px;
+    height: 30px;
+    margin: 0 auto;
+}
+
+input[type="text"]{
+    width: 400px;
+    height: 30px;
+    padding: 05px;
+    border-radius: 50px;
+    border: 1px solid;
+}
+
+input[type="password"]{
+    width: 400px;
+    height: 30px;
+    padding: 05px;
+    border-radius: 50px;
+    border: 1px solid;
+}
+
+input[type="date"]{
+    width: 400px;
+    height: 30px;
+    padding: 05px;
+    border-radius: 50px;
+    border: 1px solid;
+}
+
+
+.edit-button{
+    width: 100px;
+    height: 40px;
+    margin: 10px 175px;
+    border: 1px solid;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.edit-button:hover{
+    background-color: #52c4db;
+    transition: 0.7s;
+}

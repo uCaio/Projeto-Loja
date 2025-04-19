@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Login</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/stylesheets/navBar.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/stylesheets/formLogin.css'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <script src='/javascripts/sideBar.js' defer></script>
+</head>
+<body>
+    <div id="nav-container">
+        <header id="header"><a href="#" class="open-btn" onclick="toggleSidebar()">Tênis Zone</a></header>
+        <nav>
+            <div id="nav-items"><i class="bi bi-person-circle"></i></div>
+        </nav>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" onclick="toggleSidebar()">x</button>
+        <a href="/home" class="home-button"><i class="bi bi-house"></i></a>
+        <a href="#">Masculino</a>
+        <a href="#">Feminino</a>
+    </div> 
+    <form action="/login" method="POST">
+        <div class="form-container">
+            <div class="label-container">
+                <label for="email">Email:</label>
+            </div>
+            <div class="input-container">
+                <input type="text" name="email" placeholder="Digite seu email...">
+            </div>
+            <div class="label-container">
+                <label for="senha">Senha:</label>
+            </div>
+            <div class="input-container">
+                <input type="password" name="senha" placeholder="Digite sua senha...">
+            </div>
+            <button class="button-login">Login</button>
+        </div>
+    </form>
+</body>
+</html>
