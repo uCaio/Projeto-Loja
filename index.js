@@ -21,13 +21,18 @@ app.use(bodyParser.json());
 const homeRoutes = require('./routes/homeRoutes');
 const registerRoutes = require('./routes/registerRoutes');
 const loginRoutes = require('./routes/loginRoutes');
-const myAccount = require('./routes/myAccountRoutes')
+const myAccountRoutes = require('./routes/myAccountRoutes');
+const logOutRoutes = require('./routes/logOutRoutes');
+const productPageRoutes = require('./routes/productPageRoutes');
+
 
 
 app.use('/', homeRoutes);
 app.use('/', registerRoutes);
 app.use('/', loginRoutes);
-app.use('/', myAccount);
+app.use('/', myAccountRoutes);
+app.use('/', logOutRoutes);
+app.use('/', productPageRoutes);
 
 // View Engine
 app.set('view engine', 'ejs');

@@ -38,7 +38,7 @@
                 <label for="cpf">Cpf:</label>
             </div>
             <div class="input-container">
-                <input type="text" name="cpf"  value="<%= cliente.cpf %>">
+                <input type="text" name="cpf"  value="<%= cliente.cpf %>" disabled>
             </div>
 
             <div class="label-container">
@@ -68,7 +68,6 @@
             <div class="input-container">
                 <input type="date" name="data_nascimento"  value="<%= cliente.data_nascimento.toISOString().substring(0, 10) %>">
             </div>
-
             <button class="edit-button">Editar</button>
         </div>
     </form>

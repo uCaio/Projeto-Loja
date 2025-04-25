@@ -12,6 +12,7 @@ const editarCadastro = async (req, res) => {
         await Cliente.update(
             { nome, telefone, email, senha }, { where: { clienteID: id } }
         )
+        return res.redirect("/home")
     } catch (error) {
         console.log(error)
         return res.status(500).send("Erro no servidor.")

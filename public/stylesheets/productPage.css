@@ -1,0 +1,231 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Helvetica;
+}
+
+#content-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.image-container{
+  width: 350px;
+  height: 450px;
+  margin: 90px 120px;
+}
+
+.product-info{
+  width: 450px;
+  height: 450px;
+  margin-top: 90px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.product-info .title{
+  margin: 10px;
+  font-size: x-large;
+}
+
+.product-info p{
+  font-size: 20px;
+}
+
+.product-info .old-price{
+  text-decoration: line-through;
+  font-size: 15px;
+  color: #7d7d7d;
+  font-weight: bold;
+}
+
+.product-info .old-price{
+  margin-top: 25px;
+  margin-left: 10px;
+}
+
+.product-info .info{
+  margin: auto 10px;
+}
+
+.product-size{
+  text-decoration: none;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  font-size: 20px;
+  color: #000;
+  margin: auto 05px;
+}
+
+.product-size:hover{
+  color: #52c4db;
+  transition: 0.5s;
+}
+
+.buy-button{
+width: 100px;
+height: 50px;
+margin: 50px 40%;
+border: #52c4db;
+border-radius: 10px;
+background-color: #52c4db;
+cursor: pointer;
+color: #fff;
+font-size: 20px;
+}
+
+.buy-button:hover{
+  color: #000;
+  transition: 0.5s;
+}
+
+
+/* Slider por Produto */
+.slider-container {
+  position: relative;
+  width: 450px;
+  height: 450px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: calc(220px * 3); /* Largura total baseada no número de imagens */
+}
+
+.slider img {
+  width: 450px;
+  height: 450px;
+  flex-shrink: 0;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.prev:hover, .next:hover {
+  background-color: #52c4db;
+}
+
+.prev {
+  left: 5px;
+}
+
+.next {
+  right: 5px;
+}
+
+/* Celular */
+@media(max-width: 600px){
+  #content-container{
+      max-width: 300px;
+      display: block;
+  }
+  
+  .image-container{
+      width: 375px;
+      height: 320px;
+      margin: auto;
+  }
+
+  .product-info{
+      width: 375px;
+      height: 415px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin: auto 18px;
+  }
+
+  .product-info .old-price{
+      margin-top: 10px;
+  }
+
+  .slider-container {
+      position: relative;
+      width: 375px;
+      height: 300px;
+      overflow: hidden;
+      margin: auto 18px;
+  }
+  .slider img {
+      width: 375px;
+      height: 300px;
+      flex-shrink: 0;
+  }
+
+  .product-info .title{
+      font-size: 22px;
+  }
+
+  .buy-button{
+      width: 100px;
+      height: 50px;
+      margin: 20px 38%;
+      border: #52c4db;
+      border-radius: 10px;
+      background-color: #52c4db;
+      cursor: pointer;
+      color: #fff;
+      font-size: 20px;
+    }
+}
+
+/* Tablet */
+@media(min-width: 601px) and (max-width: 768px){
+  #content-container{
+      max-width: 1200px;
+      display: block;
+  }
+
+  .product-info{
+      width: 550px;
+      height: 415px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin: 10px auto;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .product-info .old-price{
+      margin-top: 05px;
+  }
+
+  .slider-container {
+      position: relative;
+      width: 550px;
+      height: 450px;
+      overflow: hidden;
+      margin: 0 auto;
+
+  }
+
+  .slider img {
+      width: 550px;
+      height: 450px;
+      flex-shrink: 0;
+  }
+
+  .image-container{
+      width: 550px;
+      height: 450px;
+      margin: auto;
+  }
+
+} 

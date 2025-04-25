@@ -21,7 +21,7 @@
 }
 
 .product-container{
-  width: 250px;
+  width: 278px;
   height: 400px;
   text-align: center;
   border: 1px solid #ccc;
@@ -34,16 +34,18 @@
 .buy{
   width: 100px;
   height: 35px;
+  margin-top: 10px;
   background-color: #52c4db;
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
   border: none;
   transition: 0.3s;
+  text-decoration: none;
 }
 
 .buy:hover{
-  background-color: #41a3b8;
+  color: #000;
 }
 
 .slider-container {
@@ -84,7 +86,17 @@
 }
 
 .prev { left: 5px; }
-.next { right: 5px; }
+.next { right:5px; }
+
+a{
+  text-decoration: none;
+  color: #fff;
+}
+
+a:hover{
+  color: #000;
+  transition: 0.5s;
+}
 
 @media(max-width: 600px){
   #nav-container{

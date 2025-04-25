@@ -1,6 +1,6 @@
 const session = require("express-session")
 const SequelizeStore = require("connect-session-sequelize")(session.Store)
-const { sequelize } = require("./db") // <<< pega só a instância aqui
+const { sequelize } = require("./db") 
 
 
 const sessionStore = new SequelizeStore({

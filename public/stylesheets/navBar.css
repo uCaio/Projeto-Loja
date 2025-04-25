@@ -47,6 +47,23 @@
     color: #fff;
     text-decoration: none;
   }
+
+  #sidebar .bi{
+    font-size: 30px;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  #sidebar .bi:hover{
+    color: #000;
+  }
+
+  .bi:hover{
+    color: #000;
+    transition: 0.5s;
+  }
+
+  
   
 /* Sidebar */
 .sidebar {
@@ -56,14 +73,16 @@
   top: 0;
   left: -250px; /* Começa oculta */
   background-color: #52c4db;
-  padding-top: 60px;
+  padding-top: 30px;
   transition: left 0.3s ease;
   z-index: 100000;
 }
 
 /* Links da sidebar */
 .sidebar a {
-  padding: 10px 20px;
+  padding: 05px;
+  font-size: 15px;
+  margin-left: 10px;
   display: block;
   color: white;
   text-decoration: none;
@@ -100,12 +119,14 @@
 }
 
 /* Botão Home */
-.home-button{
-  position: absolute;
-  top: 15px;
-  font-size: 24px;
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
+/* .home-button{
+  margin-bottom: 05px;
+} */
+
+/* .logout-button{
+  margin-top: 05px;
+} */
+
+#sidebar .bi-box-arrow-right{
+  margin-left: 04px;
 }
