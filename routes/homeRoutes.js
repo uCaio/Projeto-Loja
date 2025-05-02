@@ -1,7 +1,8 @@
 const express = require("express")
 const router = express.Router()
-const homeController = require("../controllers/homeController")
-const {Cliente} = require('../config/db').models
+// const homeController = require("../controllers/homeController")
+const { Cliente } = require('../config/db').models
+const {Produto} = require('../config/db').models
 
 router.get('/home', async (req, res) => {
     try {
@@ -9,7 +10,9 @@ router.get('/home', async (req, res) => {
         if (req.session.clienteId) {
             cliente = await Cliente.findByPk(req.session.clienteId);
         }
-        res.render("home", { cliente });
+
+        const produto = await Produto.findAll();
+        res.render("home", { cliente, produto });
     } catch (error) {
         console.log(error);
         res.status(500).send("Erro no servidor.");

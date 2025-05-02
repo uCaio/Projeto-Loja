@@ -38,84 +38,24 @@
             <% } %>
         </div>
         <section id="products">
-            <div class="product-container">
-                <div class="slider-container">
-                    <div class="slider">
-                        <img src="images/tenis-masculino/nike/air-max-97/nike-air-max-97-1.avif" alt="Tênis masculino">
-                        <img src="images/tenis-masculino/nike/air-max-97/nike-air-max-97-2.avif" alt="Tênis masculino">
-                        <img src="images/tenis-masculino/nike/air-max-97/nike-air-max-97-3.avif" alt="Tênis masculino">
-                        <img src="images/tenis-masculino/nike/air-max-97/nike-air-max-97-4.avif" alt="Tênis masculino">
-                        <img src="images/tenis-masculino/nike/air-max-97/nike-air-max-97-5.avif" alt="Tênis masculino">
-                        <img src="images/tenis-masculino/nike/air-max-97/nike-air-max-97-6.avif" alt="Tênis masculino">
-                        <img src="images/tenis-masculino/nike/air-max-97/nike-air-max-97-7.avif" alt="Tênis masculino">
-                        <img src="images/tenis-masculino/nike/air-max-97/nike-air-max-97-8.avif" alt="Tênis masculino">
-                        <img src="images/tenis-masculino/nike/air-max-97/nike-air-max-97-9.avif" alt="Tênis masculino">
+            <% produto.forEach(p => { %>
+                <div class="product-container">
+                    <div class="slider-container">
+                        <div class="slider">
+                            <% 
+                                let imagens = Array.isArray(p.imagens) ? p.imagens : p.imagens.split(',');
+                            %>
+                            <% imagens.forEach(img => { %>
+                                <img src="/images/<%= p.pasta_imagens %>/<%= img.trim() %>" alt="<%= p.nome %>">
+                            <% }) %>
+                        </div>
+                        <button class="prev">❮</button>
+                        <button class="next">❯</button>
                     </div>
-                    <button class="prev">❮</button>
-                    <button class="next">❯</button>
+                    <p><%= p.nome %><br>R$ <%= Number(p.preco).toFixed(2).replace('.', ',') %></p>
+                    <button class="buy"><a href="/produto/<%= p.produtoID %>">Comprar</a></button>
                 </div>
-                <p>Tênis Nike Air Max 97 Masculino<br>R$ 700,00</p>
-                <button class="buy""><a href="/produto">Comprar</a></button>
-            </div>
-
-            <!-- Produto 2 -->
-            <div class="product-container">
-                <div class="slider-container">
-                    <div class="slider">
-                        <img src="images/tenis-masculino/nike/nike-tn/nike-tn-1.avif" alt="Tênis masculino">
-                        <img src="images/tenis-masculino/nike/nike-tn/nike-tn-2.avif" alt="Tênis masculino">
-                        <img src="images/tenis-masculino/nike/nike-tn/nike-tn-3.avif" alt="Tênis masculino">
-                        <img src="images/tenis-masculino/nike/nike-tn/nike-tn-4.avif" alt="Tênis masculino">
-                        <img src="images/tenis-masculino/nike/nike-tn/nike-tn-5.avif" alt="Tênis masculino">
-                        <img src="images/tenis-masculino/nike/nike-tn/nike-tn-6.avif" alt="Tênis masculino">
-                        <img src="images/tenis-masculino/nike/nike-tn/nike-tn-7.avif" alt="Tênis masculino">
-                        <img src="images/tenis-masculino/nike/nike-tn/nike-tn-8.avif" alt="Tênis masculino">
-                    </div>
-                    <button class="prev">❮</button>
-                    <button class="next">❯</button>
-                </div>
-                <p>Tênis Nike TN Masculino<br>R$ 800,00</p>
-                <button class="buy""><a href="/produto">Comprar</a></button>
-            </div>
-
-            <!-- Produto 3 -->
-            <div class="product-container">
-                <div class="slider-container">
-                    <div class="slider">
-                        <img src="images/tenis-feminino/nike/nike-structure/nike-structure-1.avif" alt="Tênis Feminino">
-                        <img src="images/tenis-feminino/nike/nike-structure/nike-structure-2.avif" alt="Tênis Feminino">
-                        <img src="images/tenis-feminino/nike/nike-structure/nike-structure-3.avif" alt="Tênis Feminino">
-                        <img src="images/tenis-feminino/nike/nike-structure/nike-structure-4.avif" alt="Tênis Feminino">
-                        <img src="images/tenis-feminino/nike/nike-structure/nike-structure-5.avif" alt="Tênis Feminino">
-                        <img src="images/tenis-feminino/nike/nike-structure/nike-structure-6.avif" alt="Tênis Feminino">
-                        <img src="images/tenis-feminino/nike/nike-structure/nike-structure-7.avif" alt="Tênis Feminino">
-                        <img src="images/tenis-feminino/nike/nike-structure/nike-structure-8.avif" alt="Tênis Feminino">   
-                    </div>
-                    <button class="prev">❮</button>
-                    <button class="next">❯</button>
-                </div>
-                <p>Tênis Nike Structure 25 Feminino<br>R$ 500,00</p>
-                <button class="buy""><a href="/produto">Comprar</a></button>
-            </div>
-
-            <!-- Produto 4 -->
-            <div class="product-container">
-                <div class="slider-container">
-                    <div class="slider">
-                        <img src="images/tenis-feminino/nike/nike-court-vision/nike-court-vision-1.avif" alt="Tênis Feminino">
-                        <img src="images/tenis-feminino/nike/nike-court-vision/nike-court-vision-2.avif" alt="Tênis Feminino">
-                        <img src="images/tenis-feminino/nike/nike-court-vision/nike-court-vision-3.avif" alt="Tênis Feminino">
-                        <img src="images/tenis-feminino/nike/nike-court-vision/nike-court-vision-4.avif" alt="Tênis Feminino">
-                        <img src="images/tenis-feminino/nike/nike-court-vision/nike-court-vision-5.avif" alt="Tênis Feminino">
-                        <img src="images/tenis-feminino/nike/nike-court-vision/nike-court-vision-6.avif" alt="Tênis Feminino">
-                        <img src="images/tenis-feminino/nike/nike-court-vision/nike-court-vision-7.avif" alt="Tênis Feminino">
-                    </div>
-                    <button class="prev">❮</button>
-                    <button class="next">❯</button>
-                </div>
-                <p>Tênis Nike Court Vision Feminino <br>R$ 800,00</p>
-                <button class="buy""><a href="/produto">Comprar</a></button>
-            </div>
+            <% }) %>
         </section>
     </div>
 </body>

@@ -3,7 +3,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Loja</title>
+    <title><%= produto.nome %> | Tênis Zone</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel='stylesheet' type='text/css' media='screen' href='/stylesheets/navBar.css'>
@@ -24,47 +24,64 @@
             <% } %>
         </nav>
     </div>
+
     <div class="sidebar" id="sidebar">
         <button class="close-btn" onclick="toggleSidebar()">x</button>
         <a href="/home" class="home-button"><i class="bi bi-house"></i></a>
-        <% if(!cliente){ %>
+        <% if (!cliente) { %>
             <a href="#">Masculino</a>
             <a href="#">Feminino</a>
-        <% }else{ %>
+        <% } else { %>
             <a href="/logout" class="logout-button"><i class="bi bi-box-arrow-right"></i></a>
             <a href="#">Masculino</a>
             <a href="#">Feminino</a>
         <% } %>
     </div>
+
     <main id="content-container">
         <article class="image-container">
             <div class="slider-container">
                 <div class="slider">
-                    <img src="images/tenis-masculino/nike/air-max-97/nike-air-max-97-1.avif" alt="Tênis masculino">
-                    <img src="images/tenis-masculino/nike/air-max-97/nike-air-max-97-2.avif" alt="Tênis masculino">
-                    <img src="images/tenis-masculino/nike/air-max-97/nike-air-max-97-3.avif" alt="Tênis masculino">
-                    <img src="images/tenis-masculino/nike/air-max-97/nike-air-max-97-4.avif" alt="Tênis masculino">
-                    <img src="images/tenis-masculino/nike/air-max-97/nike-air-max-97-5.avif" alt="Tênis masculino">
-                    <img src="images/tenis-masculino/nike/air-max-97/nike-air-max-97-6.avif" alt="Tênis masculino">
-                    <img src="images/tenis-masculino/nike/air-max-97/nike-air-max-97-7.avif" alt="Tênis masculino">
-                    <img src="images/tenis-masculino/nike/air-max-97/nike-air-max-97-8.avif" alt="Tênis masculino">
-                    <img src="images/tenis-masculino/nike/air-max-97/nike-air-max-97-9.avif" alt="Tênis masculino">
+                    <% if (produto.imagens && produto.imagens.length > 0) { 
+                         const imagensArray = produto.imagens.split(','); %>
+                        <% imagensArray.forEach(imagem => { %>
+                            <img src="/images/<%= imagem.trim() %>" alt="<%= produto.nome %>">
+                        <% }) %>
+                    <% } else { %>
+                        <img src="/images/sem-imagem-disponivel.jpg" alt="Imagem indisponível">
+                    <% } %>
                 </div>
                 <button class="prev">❮</button>
                 <button class="next">❯</button>
             </div>
         </article>
+
         <aside>
             <div class="product-info">
-                <p class="title">Tênis Nike Air Max 97 - Masculino</p><br>
-                <p class="old-price">R$ 1500,00</p><br>
-                <p class="info"><strong>R$ 800,00 no Pix</strong> </p>
-                <p class="info">ou <strong>R$ 950,00</strong> em até <strong>12x sem juros</strong></p><br>
-                <p class="info"><strong>Cor:</strong> Preto e Branco</p><br>
-                <p class="info"><strong>Tamanho:</strong> <a href="#" class="product-size">37</a> <a href="#" class="product-size">38</a> <a href="#" class="product-size">39</a> <a href="#" class="product-size">40</a> <a href="#" class="product-size">41</a> <a href="#" class="product-size">42</a></p>
-                <button type="submit" class="buy-button">Comprar</button>
+                <p class="title"><%= produto.nome %></p><br>
+
+                <% if (produto.precoOriginal) { %>
+                    <p class="old-price">R$ <%= produto.precoOriginal.toFixed(2) %></p><br>
+                <% } %>
+
+                <p class="info"><strong>R$ <%= produto.precoPix.toFixed(2) %> no Pix</strong></p>
+                <p class="info">ou <strong>R$ <%= produto.precoParcelado.toFixed(2) %></strong> em até <strong>12x sem juros</strong></p><br>
+
+                <p class="info"><strong>Cor:</strong> <%= produto.cor %></p><br>
+
+                <% const tamanhosArray = produto.tamanhos.split(','); %>
+                <p class="info"><strong>Tamanhos disponíveis:</strong>
+                    <% tamanhosArray.forEach(tamanho => { %>
+                        <a href="#" class="product-size"><%= tamanho.trim() %></a>
+                    <% }) %>
+                </p>
+
+                <form method="POST" action="/carrinho/adicionar">
+                    <input type="hidden" name="produtoId" value="<%= produto.id %>">
+                    <button type="submit" class="buy-button">Comprar</button>
+                </form>
             </div>
         </aside>
     </main>
 </body>
-</html> 
+</html>
