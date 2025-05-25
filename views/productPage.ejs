@@ -11,20 +11,18 @@
     <link rel='stylesheet' type='text/css' media='screen' href='/stylesheets/bootstrap.min.css'>
     <script src='/javascripts/sideBar.js' defer></script>
     <script src='/javascripts/slider-images.js' defer></script>
+    <script src='/javascripts/selectSize.js' defer></script>
     <script src='/javascripts/bootstrap.bundle.min.js' defer></script>
 </head>
 <body>
-    <div id="nav-container">
+    <nav id="nav-container">
         <header id="header"><a class="open-btn" onclick="toggleSidebar()">Tênis Zone</a></header>
-        <nav>
             <% if (!cliente) { %>
                 <a href="/login"><i class="bi bi-person-circle"></i></a>
             <% } else { %>
                 <a href="/minhaConta/<%= cliente.clienteID %>"><i class="bi bi-person-circle"></i></a>
             <% } %>
-        </nav>
-    </div>
-
+    </nav>
     <div class="sidebar" id="sidebar">
         <button class="close-btn" onclick="toggleSidebar()">x</button>
         <a href="/home" class="home-button"><i class="bi bi-house"></i></a>
@@ -37,17 +35,16 @@
             <a href="#">Feminino</a>
         <% } %>
     </div>
-
     <main id="content-container">
         <article class="image-container">
             <div class="slider-container">
                 <div class="slider">
                     <% if (produto.imagens && produto.imagens.length > 0) { 
-                         const imagensArray = produto.imagens.split(','); %>
-                        <% imagensArray.forEach(imagem => { %>
-                            <img src="/images/<%= imagem.trim() %>" alt="<%= produto.nome %>">
-                        <% }) %>
-                    <% } else { %>
+                        const imagensArray = produto.imagens.split(','); %>
+                       <% imagensArray.forEach(imagem => { %>
+                           <img src="/images/<%= produto.pasta_imagens %>/<%= imagem.trim() %>" alt="<%= produto.nome %>">
+                       <% }) %>
+                   <% } else { %>
                         <img src="/images/sem-imagem-disponivel.jpg" alt="Imagem indisponível">
                     <% } %>
                 </div>
@@ -55,29 +52,28 @@
                 <button class="next">❯</button>
             </div>
         </article>
-
         <aside>
             <div class="product-info">
                 <p class="title"><%= produto.nome %></p><br>
 
                 <% if (produto.precoOriginal) { %>
-                    <p class="old-price">R$ <%= produto.precoOriginal.toFixed(2) %></p><br>
+                    <p class="old-price">R$ <%= produto.preco_original%></p><br>
                 <% } %>
+                
+                <p class="old-price"><%= produto.preco_original %></p>
 
-                <p class="info"><strong>R$ <%= produto.precoPix.toFixed(2) %> no Pix</strong></p>
-                <p class="info">ou <strong>R$ <%= produto.precoParcelado.toFixed(2) %></strong> em até <strong>12x sem juros</strong></p><br>
+                <p class="info"><strong>R$ <%= produto.preco_pix%> no Pix</strong></p>
+                <p class="info">ou <strong>R$ <%= produto.preco_parcelado%></strong> em até <strong>12x sem juros</strong></p><br>
 
                 <p class="info"><strong>Cor:</strong> <%= produto.cor %></p><br>
 
                 <% const tamanhosArray = produto.tamanhos.split(','); %>
                 <p class="info"><strong>Tamanhos disponíveis:</strong>
                     <% tamanhosArray.forEach(tamanho => { %>
-                        <a href="#" class="product-size"><%= tamanho.trim() %></a>
+                        <a class="product-size"><%= tamanho.trim() %></a>
                     <% }) %>
                 </p>
-
-                <form method="POST" action="/carrinho/adicionar">
-                    <input type="hidden" name="produtoId" value="<%= produto.id %>">
+                <form method="POST" action="/carrinho/adicionar/<%= produto.produtoID %>">
                     <button type="submit" class="buy-button">Comprar</button>
                 </form>
             </div>

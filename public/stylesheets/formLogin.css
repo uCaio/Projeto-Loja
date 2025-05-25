@@ -55,3 +55,8 @@ input[type="password"]{
     background-color: #52c4db;
     transition: 0.7s;
 }
+
+.label-container a{
+    text-decoration: none;
+    color: #52c4db;
+}

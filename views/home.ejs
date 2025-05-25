@@ -15,16 +15,14 @@
 </head>
 <body>
     <div id="container">
-        <div id="nav-container">
+        <nav id="nav-container">
             <header id="header"><a class="open-btn" onclick="toggleSidebar()">Tênis Zone</a></header>
-            <nav>
-                <% if (!cliente) { %>
-                    <a href="/login"><i class="bi bi-person-circle"></i></a>
-                <% } else { %>
-                    <a href="/minhaConta/<%= cliente.clienteID %>"><i class="bi bi-person-circle"></i></a>
-                <% } %>
-            </nav>
-        </div>
+            <% if (!cliente) { %>
+                <a href="/login"><i class="bi bi-person-circle"></i></a>
+            <% } else { %>
+                <a href="/minhaConta/<%= cliente.clienteID %>"><i class="bi bi-person-circle"></i></a>
+            <% } %>
+        </nav>
         <div class="sidebar" id="sidebar">
             <button class="close-btn" onclick="toggleSidebar()">x</button>
             <a href="/home" class="home-button"><i class="bi bi-house"></i></a>
@@ -52,8 +50,8 @@
                         <button class="prev">❮</button>
                         <button class="next">❯</button>
                     </div>
-                    <p><%= p.nome %><br>R$ <%= Number(p.preco).toFixed(2).replace('.', ',') %></p>
-                    <button class="buy"><a href="/produto/<%= p.produtoID %>">Comprar</a></button>
+                    <p><%= p.nome %><br>R$ <%= Number(p.preco_pix).toFixed(2).replace('.', ',') %></p>
+                    <button class="buy" type="submit"><a href="/produto/<%= p.produtoID %>">Comprar</a></button>
                 </div>
             <% }) %>
         </section>

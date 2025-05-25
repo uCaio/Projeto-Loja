@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Carrinho de Compras</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/stylesheets/shoppingCart.css">
+    <link rel="stylesheet" href="/stylesheets/navBar.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="/javascripts/sideBar.js" defer></script>
+</head>
+<body>
+    <nav id="nav-container">
+        <header id="header"><a class="open-btn" onclick="toggleSidebar()">Tênis Zone</a></header>
+            <% if (!cliente) { %>
+                <a href="/login"><i class="bi bi-person-circle"></i></a>
+            <% } else { %>
+                <a href="/minhaConta/<%= cliente.clienteID %>"><i class="bi bi-person-circle"></i></a>
+            <% } %>
+    </nav>
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" onclick="toggleSidebar()">x</button>
+        <a href="/home" class="home-button"><i class="bi bi-house"></i></a>
+        <% if (!cliente) { %>
+            <a href="#">Masculino</a>
+            <a href="#">Feminino</a>
+        <% } else { %>
+            <a href="/logout" class="logout-button"><i class="bi bi-box-arrow-right"></i></a>
+            <a href="#">Masculino</a>
+            <a href="#">Feminino</a>
+        <% } %>
+    </div>
+    <main class="cart-container">
+        <h2>Carrinho de Compras</h2>
+        <% if (carrinho.length === 0) { %>
+            <p class="empty">Seu carrinho está vazio.</p>
+        <% } else { %>
+            <% let totalGeral = 0; %>
+            <% carrinho.forEach(produto => { 
+                const subtotal = produto.preco * produto.quantidade;
+                totalGeral += subtotal;
+
+                let primeiraImagem = 'sem-imagem-disponivel.jpg';
+                if (produto.imagens && produto.imagens.trim().length > 0) {
+                    primeiraImagem = produto.imagens.split(',')[0].trim();
+                }
+            %>
+                <div class="cart-item">
+                    <img src="/images/<%= produto.pasta_imagens %>/<%= primeiraImagem %>" alt="<%= produto.nome %>">
+                    <div class="item-details">
+                        <h3><%= produto.nome %></h3>
+                        <p>Preço: R$ <%= produto.preco %></p>
+                        <!-- <p>Tamanho: <%= produto.tamanho %></p> -->
+                        <form method="POST" action="/carrinho/atualizar">
+                            <input type="hidden" name="produtoId" value="<%= produto.id%>">
+                            <label for="quantidade">Quantidade:</label>
+                            <input type="number" name="novaQuantidade" value="<%= produto.quantidade %>" min="1">
+                            <button type="submit">Atualizar</button>
+                        </form>
+                        <form method="POST" action="/carrinho/remover/<%= produto.id%>">
+                            <button type="submit" class="remove-btn">Remover</button>
+                        </form>
+                        <p><strong>Subtotal:</strong> R$ <%= subtotal.toFixed(2) %></p>
+                    </div>
+                </div>
+            <% }) %>
+
+            <div class="cart-summary">
+                <p><strong>Total Geral:</strong> R$ <%= totalGeral.toFixed(2) %></p>
+                <form method="POST" action="/carrinho/limpar">
+                    <button type="submit" class="clear-btn">Limpar Carrinho</button>
+                </form>
+            </div>
+        <% } %>
+    </main>
+</body>
+</html>
