@@ -66,14 +66,17 @@
                 <p class="info">ou <strong>R$ <%= produto.preco_parcelado%></strong> em até <strong>12x sem juros</strong></p><br>
 
                 <p class="info"><strong>Cor:</strong> <%= produto.cor %></p><br>
+                <p class="info"><strong>Quantidade no estoque:</strong> <%= estoque.quantidade %></p><br>
 
                 <% const tamanhosArray = produto.tamanhos.split(','); %>
-                <p class="info"><strong>Tamanhos disponíveis:</strong>
+                <div class="tamanhos">
+                    <p class="info"><strong>Tamanhos disponíveis:</strong></p>
                     <% tamanhosArray.forEach(tamanho => { %>
-                        <a class="product-size"><%= tamanho.trim() %></a>
+                        <button class="product-size" type="button" onclick="selecionarTamanho('<%= tamanho.trim() %>')"><%= tamanho.trim() %> </button>
                     <% }) %>
-                </p>
+                </div>
                 <form method="POST" action="/carrinho/adicionar/<%= produto.produtoID %>">
+                    <input type="hidden" name="tamanho" id="inputTamanhoSelecionado" required>
                     <button type="submit" class="buy-button">Comprar</button>
                 </form>
             </div>

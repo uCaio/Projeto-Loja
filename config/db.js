@@ -11,8 +11,9 @@ const sequelize = new Sequelize('database_loja', 'root', 'admin', {
 const Cliente = require('../models/Cliente')(sequelize);
 const Produto = require('../models/Produto')(sequelize);
 const Compra = require('../models/Compra')(sequelize);
+const Estoque = require('../models/Estoque')(sequelize);
 
-const models = { Cliente, Produto, Compra }
+const models = { Cliente, Produto, Compra, Estoque}
 
 // Registros das associações
 Object.values(models).forEach((model) => {

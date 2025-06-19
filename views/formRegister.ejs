@@ -13,11 +13,6 @@
 <body>
     <nav id="nav-container">
         <header id="header"><a class="open-btn" onclick="toggleSidebar()">Tênis Zone</a></header>
-            <% if (!cliente) { %>
-                <a href="/login"><i class="bi bi-person-circle"></i></a>
-            <% } else { %>
-                <a href="/minhaConta/<%= cliente.clienteID %>"><i class="bi bi-person-circle"></i></a>
-            <% } %>
     </nav>
     <div class="sidebar" id="sidebar">
         <button class="close-btn" onclick="toggleSidebar()">x</button>
@@ -31,42 +26,42 @@
                 <label for="nome">Nome:</label>
             </div>
             <div class="input-container">
-                <input type="text" name="nome" placeholder="Digite seu nome...">
+                <input type="text" name="nome" placeholder="Digite seu nome..." required>
             </div>
 
             <div class="label-container">
                 <label for="cpf">Cpf:</label>
             </div>
             <div class="input-container">
-                <input type="text" name="cpf" placeholder="Digite seu cpf...">
+                <input type="text" name="cpf" placeholder="Digite seu cpf..." required>
             </div>
 
             <div class="label-container">
                 <label for="telefone">Telefone:</label>
             </div>
             <div class="input-container">
-                <input type="text" name="telefone" placeholder="Digite seu telefone...">
+                <input type="text" name="telefone" placeholder="Digite seu telefone..." required>
             </div>
 
             <div class="label-container">
                 <label for="email">Email:</label>
             </div>
             <div class="input-container">
-                <input type="text" name="email" placeholder="Digite seu email...">
+                <input type="text" name="email" placeholder="Digite seu email..." required>
             </div>
 
             <div class="label-container">
                 <label for="senha">Senha:</label>
             </div>
             <div class="input-container">
-                <input type="password" name="senha" placeholder="Digite sua senha...">
+                <input type="password" name="senha" placeholder="Digite sua senha..." required>
             </div>
 
             <div class="label-container">
                 <label for="data_nascimento">Data de Nascimento:</label>
             </div>
             <div class="input-container">
-                <input type="date" name="data_nascimento" placeholder="Digite sua data de nascimento...">
+                <input type="date" name="data_nascimento" placeholder="Digite sua data de nascimento..." required>
             </div>
 
             <button class="register-button">Cadastre-se</button>

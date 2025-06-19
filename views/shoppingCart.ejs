@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/stylesheets/navBar.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <script src="/javascripts/sideBar.js" defer></script>
-</head>
+    <script src="/javascripts/cep.js" defer></script>
 <body>
     <nav id="nav-container">
         <header id="header"><a class="open-btn" onclick="toggleSidebar()">Tênis Zone</a></header>
@@ -45,31 +45,50 @@
                     primeiraImagem = produto.imagens.split(',')[0].trim();
                 }
             %>
-                <div class="cart-item">
-                    <img src="/images/<%= produto.pasta_imagens %>/<%= primeiraImagem %>" alt="<%= produto.nome %>">
-                    <div class="item-details">
-                        <h3><%= produto.nome %></h3>
-                        <p>Preço: R$ <%= produto.preco %></p>
-                        <!-- <p>Tamanho: <%= produto.tamanho %></p> -->
-                        <form method="POST" action="/carrinho/atualizar">
-                            <input type="hidden" name="produtoId" value="<%= produto.id%>">
-                            <label for="quantidade">Quantidade:</label>
-                            <input type="number" name="novaQuantidade" value="<%= produto.quantidade %>" min="1">
-                            <button type="submit">Atualizar</button>
-                        </form>
-                        <form method="POST" action="/carrinho/remover/<%= produto.id%>">
-                            <button type="submit" class="remove-btn">Remover</button>
-                        </form>
+            <div class="cart-item">
+                <img src="/images/<%= produto.pasta_imagem %>/<%= produto.imagem %>" alt="<%= produto.nome %>">
+                <div class="item-details">
+                    <h3><%= produto.nome %></h3>
+                    <p>Preço: R$ <%= produto.preco %></p>
+                    <p>Tamanho: <%= produto.tamanho %></p>
+                    <form method="POST" action="/carrinho/atualizar">
+                        <input type="hidden" name="produtoId" value="<%= produto.id%>">
+                        <label for="quantidade">Quantidade:</label>
+                        <input type="number" name="novaQuantidade" value="<%= produto.quantidade %>" min="1">
+                        <button type="submit">Atualizar</button>
+                    </form>
+                    <form method="POST" action="/carrinho/remover/<%= produto.id%>">
+                        <button type="submit" class="remove-btn">Remover</button>
+                    </form>
                         <p><strong>Subtotal:</strong> R$ <%= subtotal.toFixed(2) %></p>
-                    </div>
                 </div>
+            </div>
             <% }) %>
-
             <div class="cart-summary">
-                <p><strong>Total Geral:</strong> R$ <%= totalGeral.toFixed(2) %></p>
+                 <form method="get"  action="." id="box-cep">
+                    <strong><p>Calcular Frete:</p></strong>
+                    <label for="cep">Cep:</label>
+                    <input name="cep" type="text" id="cep" value=""  class="summary-inputs" maxlength="9" onblur="pesquisacep(this.value);"/><br />
+                    <label>Rua:
+                    <input name="rua" type="text" id="rua"/ class="summary-inputs" ></label><br />
+                    <label>Bairro:
+                    <input name="bairro" type="text" id="bairro"/ class="summary-inputs" ></label><br />
+                    <label>Cidade:
+                    <input name="cidade" type="text" id="cidade"/ class="summary-inputs" ></label><br />
+                    <label>Estado:
+                    <input name="uf" type="text" id="uf" size="2"  class="summary-inputs" /></label><br />
+                    <input name="ibge" type="hidden" id="ibge" size="8"  class="summary-inputs" /></label><br />
+                    <button>Calcular</button>
+                </form>
+                <div id="info-container">
+                    <p><strong>Total Geral:</strong> R$ <%= totalGeral.toFixed(2) %></p>
                 <form method="POST" action="/carrinho/limpar">
                     <button type="submit" class="clear-btn">Limpar Carrinho</button>
                 </form>
+                <form action="/carrinho/finalizar" method="POST">
+                    <button type="submit" class="finish-btn">Finalizar Compra</button>
+                </form>
+                </div>
             </div>
         <% } %>
     </main>

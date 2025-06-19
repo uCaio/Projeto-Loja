@@ -1,5 +1,3 @@
-const { Cliente } = require('../config/db').models
-
 const logout = async (req, res) => {
     try {
         req.session.destroy((err) => {

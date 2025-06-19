@@ -1,6 +1,5 @@
 const express = require("express")
 const router = express.Router()
-// const homeController = require("../controllers/homeController")
 const { Cliente } = require('../config/db').models
 const {Produto} = require('../config/db').models
 
